@@ -5,6 +5,7 @@ import { globalVars } from "../../app/globalVars";
 const initialState = {
   companies: globalVars.COMPANIES_PLACEHOLDER,
   products: globalVars.PRODUCT_PLACEHOLDER,
+  selectedCompany: "",
   status: {
     companies: "idle",
     products: "idle",
@@ -15,7 +16,14 @@ const initialState = {
 const shopSlice = createSlice({
   name: "shop",
   initialState,
-  reducers: {},
+  reducers: {
+    companySelected(state, action) {
+      state.selectedCompany = action.payload;
+    },
+    companyUnselected(state, action) {
+      state.selectedCompany = "";
+    },
+  },
   extraReducers(builder) {
     builder
       // companies
@@ -67,4 +75,5 @@ export const fetchProducts = createAsyncThunk(
   }
 );
 
+export const { companySelected, companyUnselected } = shopSlice.actions;
 export default shopSlice.reducer;

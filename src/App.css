@@ -134,6 +134,12 @@
   text-align: center;
 }
 
-.shop-company-btn:hover {
+.shop-company-btn:hover,
+.btn-active {
   background: var(--btn-hover-color);
+}
+.btn-disabled {
+  pointer-events: none;
+  color: grey;
+  background: lightgray;
 }

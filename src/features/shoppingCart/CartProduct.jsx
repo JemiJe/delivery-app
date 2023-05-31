@@ -1,10 +1,15 @@
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 
 import { productDeleted, productUpdated } from "../shoppingCart/cartSlice";
 
 export const CartProduct = ({ data }) => {
   const dispatch = useDispatch();
+  const productCompany = useSelector((state) => {
+    return state.shop.companies.find((company) => company.id == data.companyId)
+      .companyName;
+  });
 
   const [product, setProduct] = useState({
     ...data,
@@ -31,6 +36,7 @@ export const CartProduct = ({ data }) => {
     <article className="cart-product">
       <div className="cart-product-image"></div>
       <h2>{data.productName}</h2>
+      <span>{productCompany}</span>
       <div className="cart-product-details">
         <div className="cart-product-amount">
           <span>

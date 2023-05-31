@@ -4,10 +4,20 @@ import { useSelector, useDispatch } from "react-redux";
 import { Credentials } from "./Credentials";
 import { CartProductsList } from "./CartProductsList";
 
+import { companyUnselected } from "../shop/shopSlice";
+
 import { globalVars } from "../../app/globalVars";
 
 export const ShoppingCartPage = () => {
+  const dispatch = useDispatch();
   const products = useSelector((state) => state.shoppingCart.products);
+  const productsAmount = useSelector(
+    (state) => state.shoppingCart.products.length
+  );
+
+  if (productsAmount === 0) {
+    dispatch(companyUnselected());
+  }
 
   // handling and amount of each products in CartProductsList -> CartProduct is updated in cartSlice using productUpdated
   // it updates products in cartSlice
@@ -46,7 +56,6 @@ export const ShoppingCartPage = () => {
       cart: [...products],
       total: calcTotal(),
     };
-    console.dir(order);
 
     fetch(globalVars.POST_ORDER_URL, {
       method: "POST",
