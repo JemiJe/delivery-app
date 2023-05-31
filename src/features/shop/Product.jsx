@@ -10,8 +10,9 @@ export const Product = ({ data }) => {
     dispatch(productAdded(data));
   };
 
+  // uncomment if there is valid image url
   const imageStyle = {
-    backgroundImage: `url('${data.productImage}')`,
+    // backgroundImage: `url('${data.productImage}')`,
   };
 
   return (

@@ -30,8 +30,8 @@ export const CartProduct = ({ data }) => {
   return (
     <article className="cart-product">
       <div className="cart-product-image"></div>
+      <h2>{data.productName}</h2>
       <div className="cart-product-details">
-        <h2>{data.productName}</h2>
         <div className="cart-product-amount">
           <span>
             {"Price: "}

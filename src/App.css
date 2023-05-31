@@ -78,6 +78,10 @@
 
 .product,
 .cart-product {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
   min-width: var(--product-card-width);
   max-width: var(--product-card-width);
   border: 1px solid var(--base-border-color);
