@@ -1,0 +1,41 @@
+export const Credentials = ({ credential, handleCallback }) => {
+  return (
+    <section className="cart-credentials">
+      <label>
+        Name:
+        <input
+          value={credential.name}
+          type="text"
+          name="name"
+          onChange={handleCallback}
+        />
+      </label>
+      <label>
+        Email:
+        <input
+          value={credential.email}
+          type="email"
+          name="email"
+          onChange={handleCallback}
+        />
+      </label>
+      <label>
+        Phone:
+        <input
+          value={credential.phone}
+          type="tel"
+          name="phone"
+          onChange={handleCallback}
+        />
+      </label>
+      <label>
+        Address:
+        <input
+          value={credential.address}
+          name="address"
+          onChange={handleCallback}
+        />
+      </label>
+    </section>
+  );
+};

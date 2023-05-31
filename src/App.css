@@ -1,0 +1,135 @@
+@import url("./assets/normalize.css");
+
+.navbar {
+  background: var(--base-bg-color);
+  padding: 1em;
+  margin: 1em;
+}
+.shop-main,
+.cart-main,
+.cart-submit-section {
+  display: flex;
+}
+
+.cart-main {
+  flex-wrap: wrap;
+}
+.cart-submit-section {
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.cart-submit-section .cart-total {
+  margin: 0 1em;
+}
+
+.shop-companies,
+.shop-products,
+.cart-credentials,
+.cart-products-list,
+.cart-submit-section {
+  background: var(--base-bg-color);
+  margin: 0 1em;
+  padding: 1em;
+}
+
+.cart-submit-section {
+  margin-top: 1em;
+}
+
+.shop-companies {
+  flex-grow: 1;
+  min-width: 20em;
+}
+
+.cart-credentials {
+  flex: 1;
+  /* max-width: 33em; */
+  display: flex;
+  flex-direction: column;
+}
+
+.cart-credentials label {
+  display: flex;
+  flex-direction: column;
+  margin: 0.5em;
+}
+
+.shop-products,
+.cart-products-list {
+  max-height: 80vh;
+
+  flex-grow: 4;
+  display: flex;
+  flex-wrap: wrap;
+
+  overflow: scroll;
+  overflow-x: hidden;
+}
+
+.cart-products-list {
+  max-height: 70vh;
+}
+
+.cart-products-list {
+  flex: 1;
+  display: flex;
+}
+
+.product,
+.cart-product {
+  min-width: var(--product-card-width);
+  max-width: var(--product-card-width);
+  border: 1px solid var(--base-border-color);
+  border-radius: 0.5em;
+  margin: 0.5em;
+  padding: 0.5em;
+}
+
+.product-add {
+  display: flex;
+  justify-content: space-between;
+}
+
+.cart-product {
+  position: relative;
+}
+
+.cart-product-close {
+  position: absolute;
+  top: 0.5em;
+  right: 0.5em;
+}
+
+.cart-product-amount {
+  display: flex;
+  justify-content: space-between;
+}
+.cart-product-amount input {
+  width: 4em;
+}
+
+.product h2,
+.cart-product h2 {
+  font-size: 1.2em;
+}
+
+.product .product-image,
+.cart-product .cart-product-image {
+  background-size: cover;
+  height: 8em;
+  background-color: var(--image-placeholder);
+}
+
+.shop-companies li {
+  cursor: pointer;
+  border: 1px solid var(--base-border-color);
+  border-radius: 0.5em;
+  margin: 0.5em 0;
+  padding: 0.2em;
+  text-align: center;
+}
+
+.shop-company-btn:hover {
+  background: var(--btn-hover-color);
+}
