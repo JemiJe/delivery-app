@@ -9,7 +9,7 @@ const getCartFromLocalStorage = () => {
 };
 
 const initialState = {
-  products: getCartFromLocalStorage() || [],
+  products: [],
 };
 
 const cartSlice = createSlice({
