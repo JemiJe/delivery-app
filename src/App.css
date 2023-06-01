@@ -5,6 +5,9 @@
   padding: 1em;
   margin: 1em;
 }
+.navbar-orders {
+  color: var(--faded-info-color);
+}
 .shop-main,
 .cart-main,
 .cart-submit-section {

@@ -5,10 +5,12 @@ import { globalVars } from "../../app/globalVars";
 const initialState = {
   companies: globalVars.COMPANIES_PLACEHOLDER,
   products: globalVars.PRODUCT_PLACEHOLDER,
+  shopOrdersStatus: "",
   selectedCompany: "",
   status: {
     companies: "idle",
     products: "idle",
+    orders: "idle",
   },
   error: null,
 };
@@ -52,6 +54,11 @@ const shopSlice = createSlice({
       .addCase(fetchProducts.rejected, (state, action) => {
         state.status.products = "failed";
         state.error = action.error.message;
+      })
+      // check orders status
+      .addCase(getOrdersStatus.fulfilled, (state, action) => {
+        state.status.orders = "succeeded";
+        state.shopOrdersStatus = action.payload;
       });
   },
 });
@@ -72,6 +79,15 @@ export const fetchProducts = createAsyncThunk(
     const response = await fetch(productURL);
     const products = await response.json();
     return products;
+  }
+);
+
+export const getOrdersStatus = createAsyncThunk(
+  "shop/getOrdersStatus",
+  async () => {
+    const response = await fetch(globalVars.CHECK_ORDERS_URL);
+    const ordersStatus = await response.json();
+    return ordersStatus;
   }
 );
 

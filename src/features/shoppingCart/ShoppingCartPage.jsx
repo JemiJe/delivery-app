@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Credentials } from "./Credentials";
 import { CartProductsList } from "./CartProductsList";
 
-import { companyUnselected } from "../shop/shopSlice";
+import { companyUnselected, getOrdersStatus } from "../shop/shopSlice";
 
 import { globalVars } from "../../app/globalVars";
 
@@ -50,6 +50,12 @@ export const ShoppingCartPage = () => {
     }, 0);
   };
 
+  const getOrderFeedback = () => {
+    setTimeout(() => {
+      dispatch(getOrdersStatus());
+    }, 500);
+  };
+
   const sendOrder = () => {
     const order = {
       ...credential,
@@ -63,6 +69,9 @@ export const ShoppingCartPage = () => {
         "Content-Type": "application/json;charset=utf-8",
       },
       body: JSON.stringify(order),
+    }).then(() => {
+      alert("your order has been sent. check status in navbar");
+      getOrderFeedback();
     });
   };
 

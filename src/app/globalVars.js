@@ -38,6 +38,7 @@ export const globalVars = {
     return globalVars.COMPANIES_URL + `/${companyId}/` + "product";
   },
   POST_ORDER_URL: baseAPIUrl + "order",
+  CHECK_ORDERS_URL: baseAPIUrl + "orders",
   COMPANIES_PLACEHOLDER: companyPlaceholder,
   PRODUCT_PLACEHOLDER: productPlaceholder,
 };
