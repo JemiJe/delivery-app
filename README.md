@@ -15,9 +15,9 @@ npm run dev
 - only one store's products per order is allowed (middle level test task requirements)
 - receiving companies and products from server database
 - adding/deleting products in cart, sending order to server and saving into data base
-- amount of added products and server order feedback is shown in navbar
+- amount of added products and server order feedback is shown in navbar (so you get feedback from server)
 
 ## additional
 
 - only one store for ordered products: when customer adds one product in the cart shop list selection is temporary blocked until customer delete all products in the cart and can choose another store
-- after order sending appears server orders status brief info in navbar (so you get feedback from server)
+- to get rid CORS error, is used cors proxy https://corsproxy.io/
