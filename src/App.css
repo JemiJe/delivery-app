@@ -11,6 +11,13 @@
   display: flex;
 }
 
+@media screen and (max-width: 750px) {
+  .shop-main,
+  .cart-main {
+    flex-wrap: wrap;
+  }
+}
+
 .cart-main {
   flex-wrap: wrap;
 }
@@ -44,7 +51,8 @@
 
 .cart-credentials {
   flex: 1;
-  /* max-width: 33em; */
+  max-width: 100%;
+  min-width: 33em;
   display: flex;
   flex-direction: column;
 }
@@ -69,11 +77,9 @@
 
 .cart-products-list {
   max-height: 70vh;
-}
-
-.cart-products-list {
   flex: 1;
   display: flex;
+  min-width: 20em;
 }
 
 .product,
