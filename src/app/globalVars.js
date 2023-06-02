@@ -4,10 +4,13 @@ const baseAPIs = {
   // choose mockapi for rollback
   mockapi: "https://64739b8ad784bccb4a3cc3e4.mockapi.io/",
   cyclic: "https://tame-jade-dhole-toga.cyclic.app/api/",
+  // in case of cors errors
   cyclicCORS: corsProxyUrl + "https://tame-jade-dhole-toga.cyclic.app/api/",
 };
 
-const baseAPIUrl = baseAPIs.cyclicCORS;
+const baseAPIUrl = baseAPIs.cyclic;
+
+// placeholders
 const companyPlaceholder = [
   { id: "1", companyName: "Company placeholder" },
   { id: "2", companyName: "Company2 placeholder2" },

@@ -17,14 +17,17 @@ export const CompanyList = () => {
     if (companiesStatus === "idle") {
       dispatch(fetchCompanies());
     }
-  }, [companiesStatus, dispatch]);
 
-  if (cart.length > 0) {
-    const companyName = companies.find(
-      (company) => company.id == cart[0].companyId
-    ).companyName;
-    dispatch(companySelected(companyName));
-  }
+    // after company list loaded, dispatch companySelected, otherwise would be error
+    if (companiesStatus === "succeeded") {
+      if (cart.length > 0) {
+        const companyName = companies.find(
+          (company) => company.id == cart[0].companyId
+        ).companyName;
+        dispatch(companySelected(companyName));
+      }
+    }
+  }, [companiesStatus, dispatch]);
 
   const isSelectedCompany = (name) => {
     if (selectedCompany) return name === selectedCompany;

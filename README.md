@@ -20,4 +20,3 @@ npm run dev
 ## additional
 
 - only one store for ordered products: when customer adds one product in the cart shop list selection is temporary blocked until customer delete all products in the cart and can choose another store
-- to get rid CORS error, is used cors proxy https://corsproxy.io/
