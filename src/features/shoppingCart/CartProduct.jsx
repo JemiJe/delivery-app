@@ -1,15 +1,12 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 
 import { productDeleted, productUpdated } from "../shoppingCart/cartSlice";
 
 export const CartProduct = ({ data }) => {
   const dispatch = useDispatch();
-  const productCompany = useSelector((state) => {
-    return state.shop.companies.find((company) => company.id == data.companyId)
-      .companyName;
-  });
+
+  const productCompany = data.companyName ? data.companyName : "loading...";
 
   const [product, setProduct] = useState({
     ...data,

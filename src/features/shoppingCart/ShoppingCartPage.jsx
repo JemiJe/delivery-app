@@ -59,6 +59,7 @@ export const ShoppingCartPage = () => {
   const sendOrder = () => {
     const order = {
       ...credential,
+      date: new Date(),
       cart: [...products],
       total: calcTotal(),
     };

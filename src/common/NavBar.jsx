@@ -9,7 +9,8 @@ function Status({ isStatus }) {
       <span className="navbar-orders">
         {`| total orders: ${isStatus.totalOrders} |  ` +
           `total products: ${isStatus.totalProductsOrdered} | ` +
-          `last one from: ${isStatus.lastFrom}`}
+          `last one from: ${isStatus.lastFrom} | ` +
+          `overall sum: ${isStatus.totalSum}`}
       </span>
     );
 }
