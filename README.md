@@ -11,6 +11,8 @@ npm run dev
 
 ## features
 
+- users can choose their address using a pin on the map or just enter an address and it will be shown on the map (advanced level test task requirements)
+- show a shop where the user ordered goods from on the map (advanced level test task requirements); when cart is empty - showing all shops
 - cart and app state saves in localStorage using redux-persist (middle level test task requirements), refreshing shopping cart page may result in an error on netlify side, better check in shop page
 - only one store's products per order is allowed (middle level test task requirements)
 - receiving companies and products from server database

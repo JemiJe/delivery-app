@@ -64,6 +64,9 @@
   flex-direction: column;
   margin: 0.5em;
 }
+.cart-credentials input {
+  width: 100%;
+}
 
 .shop-products,
 .cart-products-list {
@@ -92,6 +95,7 @@
 
   min-width: var(--product-card-width);
   max-width: var(--product-card-width);
+  height: var(--product-card-height);
   border: 1px solid var(--base-border-color);
   border-radius: 0.5em;
   margin: 0.5em;
@@ -124,6 +128,8 @@
 .product h2,
 .cart-product h2 {
   font-size: 1.2em;
+  white-space: nowrap;
+  overflow-x: hidden;
 }
 
 .product .product-image,

@@ -35,15 +35,6 @@ export const ShoppingCartPage = () => {
     });
   }
 
-  const updateProduct = ({ updatedProduct }) => {
-    orderCart = orderCart.map((product) => {
-      if (product.productId === updatedProduct.productId) {
-        product = { ...product, ...updatedProduct };
-      }
-    });
-    console.dir(orderCart);
-  };
-
   const calcTotal = () => {
     return products.reduce((total, { priceSum }) => {
       return total + priceSum;
@@ -76,10 +67,25 @@ export const ShoppingCartPage = () => {
     });
   };
 
+  //handle Map component
+  const [selected, setSelected] = useState(null);
+  const [positioning, setPositioning] = useState({
+    center: { lat: 50.450001, lng: 30.523333 },
+    zoom: 10,
+  });
+
   return (
     <main className="cart-main">
-      <Credentials credential={credential} handleCallback={handleCredentials} />
-      <CartProductsList products={products} callbacks={{ updateProduct }} />
+      <Credentials
+        props={{ selected, positioning }}
+        credential={credential}
+        callbacks={{
+          handleCredentials,
+          setSelected,
+          setPositioning,
+        }}
+      />
+      <CartProductsList products={products} />
       <section className="cart-submit-section">
         <span className="cart-total">{`Total: $${calcTotal()}`}</span>
         <button onClick={sendOrder}>Submit</button>

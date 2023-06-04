@@ -44,4 +44,5 @@ export const globalVars = {
   CHECK_ORDERS_URL: baseAPIUrl + "orders",
   COMPANIES_PLACEHOLDER: companyPlaceholder,
   PRODUCT_PLACEHOLDER: productPlaceholder,
+  GOOGLE_MAPS_APIKEY: "AIzaSyDPpQQJmSfcAK8jC80PQ_wCutY3SK161AI",
 };
