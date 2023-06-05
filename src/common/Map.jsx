@@ -1,8 +1,6 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { GoogleMap, Marker } from "@react-google-maps/api";
-
-import { addressOnMapSelected } from "../features/shoppingCart/cartSlice";
 
 const containerStyle = {
   width: "100%",
@@ -10,20 +8,25 @@ const containerStyle = {
 };
 
 function Map({ props, callbacks }) {
-  const dispatch = useDispatch();
-  const { setIsTilesLoaded, setPositioning, setSelected } = callbacks;
-  const { isLoaded, selected, positioning, isTilesLoaded } = props;
+  const {
+    setIsTilesLoaded,
+    setPositioning,
+    setMarkerSelected,
+    handleCredentials,
+  } = callbacks;
+  const { isLoaded, positioning, isTilesLoaded, markerSelected } = props;
 
   const clickHandler = async (e) => {
+    console.dir(e);
     const geocoder = new google.maps.Geocoder();
     const request = geocoder.geocode({ location: e.latLng });
     const { results } = await request;
     const address = results[0].formatted_address;
-    // fill address combobox with new address string
-    dispatch(addressOnMapSelected(address));
-    // adding marker and centering
+    // fill address input with new address string
+    handleCredentials({ target: { name: "address", value: address } });
+    // adding marker and centering after clicking
     const coords = { lat: e.latLng.lat(), lng: e.latLng.lng() };
-    setSelected(coords);
+    setMarkerSelected(coords);
     setPositioning({ center: coords });
   };
 
@@ -36,7 +39,7 @@ function Map({ props, callbacks }) {
         onTilesLoaded={() => setIsTilesLoaded(true)}
         onClick={clickHandler}
       >
-        {selected && <Marker position={selected} />}
+        {markerSelected && <Marker position={markerSelected} />}
         {isTilesLoaded && <CompanyMarkers />}
       </GoogleMap>
     </>

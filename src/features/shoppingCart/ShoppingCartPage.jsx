@@ -68,7 +68,6 @@ export const ShoppingCartPage = () => {
   };
 
   //handle Map component
-  const [selected, setSelected] = useState(null);
   const [positioning, setPositioning] = useState({
     center: { lat: 50.450001, lng: 30.523333 },
     zoom: 10,
@@ -77,11 +76,10 @@ export const ShoppingCartPage = () => {
   return (
     <main className="cart-main">
       <Credentials
-        props={{ selected, positioning }}
+        props={{ positioning }}
         credential={credential}
         callbacks={{
           handleCredentials,
-          setSelected,
           setPositioning,
         }}
       />

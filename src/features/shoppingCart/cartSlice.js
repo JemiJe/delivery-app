@@ -43,21 +43,9 @@ const cartSlice = createSlice({
         currentProduct.priceSum = updatedProduct.priceSum;
       }
     },
-    addressOnMapSelected(state, action) {
-      state.selectedAddressOnMap = action.payload;
-    },
-    clearSelectedAddress(state, action) {
-      if (!state.selectedAddressOnMap) return;
-      state.selectedAddressOnMap = "";
-    },
   },
 });
 
-export const {
-  productAdded,
-  productDeleted,
-  productUpdated,
-  addressOnMapSelected,
-  clearSelectedAddress,
-} = cartSlice.actions;
+export const { productAdded, productDeleted, productUpdated } =
+  cartSlice.actions;
 export default cartSlice.reducer;

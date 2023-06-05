@@ -1,20 +1,4 @@
 import { useState } from "react";
-import { useSelector, useDispatch, useStore } from "react-redux";
-import { addressOnMapSelected, clearSelectedAddress } from "./cartSlice";
-
-import usePlacesAutocomplete, {
-  getGeocode,
-  getLatLng,
-} from "use-places-autocomplete";
-import {
-  Combobox,
-  ComboboxInput,
-  ComboboxPopover,
-  ComboboxList,
-  ComboboxOption,
-  ComboboxOptionText,
-} from "@reach/combobox";
-import "@reach/combobox/styles.css";
 import { useJsApiLoader } from "@react-google-maps/api";
 
 import Map from "../../common/Map";
@@ -29,30 +13,32 @@ export const Credentials = ({ credential, callbacks, props }) => {
   });
 
   const [isTilesLoaded, setIsTilesLoaded] = useState(false);
+  const [markerSelected, setMarkerSelected] = useState(false);
 
-  const { selected, positioning } = props;
-  const { setSelected, setPositioning, handleCredentials } = callbacks;
+  const { positioning } = props;
+  const { setPositioning, handleCredentials } = callbacks;
 
   return (
     <section className="cart-credentials">
       <div className="cart-map">
         <Map
-          props={{ isLoaded, selected, positioning, isTilesLoaded }}
-          callbacks={{ setIsTilesLoaded, setPositioning, setSelected }}
+          props={{ isLoaded, positioning, isTilesLoaded, markerSelected }}
+          callbacks={{
+            setIsTilesLoaded,
+            setPositioning,
+            setMarkerSelected,
+            handleCredentials,
+          }}
         />
       </div>
       <label>
         Address:
-        {isLoaded && (
-          <PlacesAutocomplete
-            props={{ isTilesLoaded, isLoaded }}
-            callbacks={{
-              setSelected,
-              setPositioning,
-              handleCredentials,
-            }}
-          />
-        )}
+        <input
+          value={credential.address}
+          type="text"
+          name="address"
+          onChange={handleCredentials}
+        />
       </label>
       <label>
         Name:
@@ -82,73 +68,5 @@ export const Credentials = ({ credential, callbacks, props }) => {
         />
       </label>
     </section>
-  );
-};
-
-const PlacesAutocomplete = ({ props, callbacks }) => {
-  const dispatch = useDispatch();
-  const store = useStore();
-  const { isLoaded, isTilesLoaded } = props;
-  const { setSelected, setPositioning, handleCredentials } = callbacks;
-
-  let {
-    ready,
-    value,
-    setValue,
-    suggestions: { status, data },
-    clearSuggestions,
-  } = usePlacesAutocomplete();
-
-  // value = addressSelectedOnMap ? addressSelectedOnMap : value;
-  const addressSelectedOnMap = useSelector(
-    (state) => state.shoppingCart.selectedAddressOnMap
-  );
-  if (addressSelectedOnMap != value) {
-    setValue(addressSelectedOnMap, false);
-  }
-
-  const handleSelect = async (address) => {
-    setValue(address, false);
-    handleCredentials({
-      target: { name: "address", value: address },
-    });
-    clearSuggestions();
-
-    const results = await getGeocode({ address });
-    const { lat, lng } = await getLatLng(results[0]);
-    setSelected({ lat, lng });
-    setPositioning({
-      center: { lat, lng },
-      zoom: 18,
-    });
-  };
-
-  return isLoaded && isTilesLoaded ? (
-    <>
-      <Combobox onSelect={handleSelect}>
-        <ComboboxInput
-          value={value}
-          onChange={(e) => {
-            // clear selected andress from the map and unlock natural behavior
-            dispatch(clearSelectedAddress());
-            setValue(e.target.value);
-            handleCredentials({
-              target: { name: "address", value: e.target.value },
-            });
-          }}
-          disabled={!ready}
-        />
-        <ComboboxPopover>
-          <ComboboxList>
-            {status === "OK" &&
-              data.map(({ place_id, description }) => (
-                <ComboboxOption key={place_id} value={description} />
-              ))}
-          </ComboboxList>
-        </ComboboxPopover>
-      </Combobox>
-    </>
-  ) : (
-    "map is loading..."
   );
 };
