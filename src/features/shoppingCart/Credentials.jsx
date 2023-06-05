@@ -18,6 +18,31 @@ export const Credentials = ({ credential, callbacks, props }) => {
   const { positioning } = props;
   const { setPositioning, handleCredentials } = callbacks;
 
+  const findCoords = async (e) => {
+    if (!e.target.value) return;
+    try {
+      const geocoder = new google.maps.Geocoder();
+      const request = geocoder.geocode({ address: e.target.value });
+      const { results } = await request;
+      // fill address input with new value
+      handleCredentials({
+        target: { name: "address", value: results[0].formatted_address },
+      });
+      // center map and set marker
+      const coords = {
+        lat: results[0].geometry.location.lat(),
+        lng: results[0].geometry.location.lng(),
+      };
+      setMarkerSelected(coords);
+      setPositioning({ center: coords, zoom: 15 });
+    } catch (error) {
+      console.error(
+        "delivery-app: incorrect address in the address field, try another. see error object below"
+      );
+      console.log(error);
+    }
+  };
+
   return (
     <section className="cart-credentials">
       <div className="cart-map">
@@ -38,6 +63,7 @@ export const Credentials = ({ credential, callbacks, props }) => {
           type="text"
           name="address"
           onChange={handleCredentials}
+          onBlur={findCoords}
         />
       </label>
       <label>

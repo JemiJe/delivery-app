@@ -17,7 +17,6 @@ function Map({ props, callbacks }) {
   const { isLoaded, positioning, isTilesLoaded, markerSelected } = props;
 
   const clickHandler = async (e) => {
-    console.dir(e);
     const geocoder = new google.maps.Geocoder();
     const request = geocoder.geocode({ location: e.latLng });
     const { results } = await request;
@@ -27,7 +26,7 @@ function Map({ props, callbacks }) {
     // adding marker and centering after clicking
     const coords = { lat: e.latLng.lat(), lng: e.latLng.lng() };
     setMarkerSelected(coords);
-    setPositioning({ center: coords });
+    setPositioning({ center: coords, zoom: 15 });
   };
 
   return isLoaded ? (

@@ -9,6 +9,10 @@ npm install
 npm run dev
 ```
 
+## features briefly
+
+google maps address search/marking, showing shops on the map, cart saves in localStorage, only one shop per order, getting/putting data into MongoDB using server API, mobile adopted markup
+
 ## features
 
 - users can choose their address using a pin on the map or just enter an address and it will be shown on the map (advanced level test task requirements)
@@ -21,4 +25,9 @@ npm run dev
 
 ## additional
 
+- input your address string into the address field and click another field/place to unfocus - then google.maps.Geocoder() will run to find address and fill the field with found one
 - only one store for ordered products: when customer adds one product in the cart shop list selection is temporary blocked until customer delete all products in the cart and can choose another store
+
+## bugs
+
+- there is some bug after you clicked on the map and the marker was added you should click and hold LMB and move the map a little bit, otherwise if you didn't move the map and immediately zoomed it - the map became unavailable
