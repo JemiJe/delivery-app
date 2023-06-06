@@ -86,7 +86,12 @@ export const ShoppingCartPage = () => {
       <CartProductsList products={products} />
       <section className="cart-submit-section">
         <span className="cart-total">{`Total: $${calcTotal()}`}</span>
-        <button onClick={sendOrder}>Submit</button>
+        <button
+          onClick={sendOrder}
+          disabled={products.length > 0 ? false : true}
+        >
+          Submit
+        </button>
       </section>
     </main>
   );

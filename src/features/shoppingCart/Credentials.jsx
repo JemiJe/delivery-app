@@ -64,6 +64,8 @@ export const Credentials = ({ credential, callbacks, props }) => {
           name="address"
           onChange={handleCredentials}
           onBlur={findCoords}
+          onKeyDown={(e) => (e.key === "Enter" ? findCoords(e) : null)}
+          placeholder="type address and press Enter or unfocus..."
         />
       </label>
       <label>

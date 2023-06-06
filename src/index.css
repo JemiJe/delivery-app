@@ -10,13 +10,14 @@
   -webkit-text-size-adjust: 100%;
 
   --base-bg-color: #e3ecfb;
-  --base-border-color: #90b9ff;
+  --base-border-color: #004dd2;
   --btn-hover-color: #90b9ff;
   --image-placeholder: #aaff90;
   --faded-info-color: #90b9ff;
 
   --product-card-width: 17em;
   --product-card-height: 15em;
+  --border-radius: 0.5em;
 }
 
 a {

@@ -97,7 +97,7 @@
   max-width: var(--product-card-width);
   height: var(--product-card-height);
   border: 1px solid var(--base-border-color);
-  border-radius: 0.5em;
+  border-radius: var(--border-radius);
   margin: 0.5em;
   padding: 0.5em;
 }
@@ -142,7 +142,8 @@
 .shop-companies li {
   cursor: pointer;
   border: 1px solid var(--base-border-color);
-  border-radius: 0.5em;
+  border-radius: var(--border-radius);
+  color: var(--base-border-color);
   margin: 0.5em 0;
   padding: 0.2em;
   text-align: center;
@@ -152,8 +153,18 @@
 .btn-active {
   background: var(--btn-hover-color);
 }
-.btn-disabled {
+.shop-companies li.btn-disabled {
   pointer-events: none;
-  color: grey;
-  background: lightgray;
+  color: #808080;
+  background: #d3d3d3;
+  border: 1px solid #808080;
+}
+
+.navbar,
+.shop-companies,
+.shop-products,
+.cart-credentials,
+.cart-products-list,
+.cart-submit-section {
+  border-radius: var(--border-radius);
 }

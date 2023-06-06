@@ -7,7 +7,7 @@ function Status({ isStatus }) {
   if (isStatus)
     return (
       <span className="navbar-orders">
-        {`| total orders: ${isStatus.totalOrders} |  ` +
+        {` | total orders: ${isStatus.totalOrders} |  ` +
           `total products: ${isStatus.totalProductsOrdered} | ` +
           `last one from: ${isStatus.lastFrom} | ` +
           `overall sum: ${isStatus.totalSum}`}

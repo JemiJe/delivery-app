@@ -10,6 +10,9 @@ export const CompanyList = () => {
 
   const companies = useSelector((state) => state.shop.companies);
   const selectedCompany = useSelector((state) => state.shop.selectedCompany);
+  const currentViewCompany = useSelector(
+    (state) => state.shop.currentCompanyView
+  );
   const companiesStatus = useSelector((state) => state.shop.status.companies);
   const cart = useSelector((state) => state.shoppingCart.products);
 
@@ -38,7 +41,8 @@ export const CompanyList = () => {
     <CompanyBtn
       key={company.id}
       data={company}
-      isSelected={isSelectedCompany(company.companyName)} //isSelectedCompany(company.companyName)
+      isSelected={isSelectedCompany(company.companyName)}
+      currentViewCompany={currentViewCompany}
     />
   ));
 

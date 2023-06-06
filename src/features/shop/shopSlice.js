@@ -7,6 +7,7 @@ const initialState = {
   products: globalVars.PRODUCT_PLACEHOLDER,
   shopOrdersStatus: "",
   selectedCompany: "",
+  currentCompanyView: "",
   status: {
     companies: "idle",
     products: "idle",
@@ -24,6 +25,9 @@ const shopSlice = createSlice({
     },
     companyUnselected(state, action) {
       state.selectedCompany = "";
+    },
+    setAsViewingCompany(state, action) {
+      state.currentCompanyView = action.payload;
     },
   },
   extraReducers(builder) {
@@ -91,5 +95,6 @@ export const getOrdersStatus = createAsyncThunk(
   }
 );
 
-export const { companySelected, companyUnselected } = shopSlice.actions;
+export const { companySelected, companyUnselected, setAsViewingCompany } =
+  shopSlice.actions;
 export default shopSlice.reducer;
