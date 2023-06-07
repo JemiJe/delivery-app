@@ -2,7 +2,6 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   products: [],
-  selectedAddressOnMap: "",
 };
 
 const cartSlice = createSlice({
@@ -43,9 +42,12 @@ const cartSlice = createSlice({
         currentProduct.priceSum = updatedProduct.priceSum;
       }
     },
+    cartCleared(state, action) {
+      state.products = [];
+    },
   },
 });
 
-export const { productAdded, productDeleted, productUpdated } =
+export const { productAdded, productDeleted, productUpdated, cartCleared } =
   cartSlice.actions;
 export default cartSlice.reducer;

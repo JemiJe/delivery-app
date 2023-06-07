@@ -5,6 +5,7 @@ import { Credentials } from "./Credentials";
 import { CartProductsList } from "./CartProductsList";
 
 import { companyUnselected, getOrdersStatus } from "../shop/shopSlice";
+import { cartCleared } from "./cartSlice";
 
 import { globalVars } from "../../app/globalVars";
 
@@ -47,7 +48,7 @@ export const ShoppingCartPage = () => {
     }, 500);
   };
 
-  const sendOrder = () => {
+  const sendOrder = async () => {
     const order = {
       ...credential,
       date: new Date(),
@@ -61,10 +62,14 @@ export const ShoppingCartPage = () => {
         "Content-Type": "application/json;charset=utf-8",
       },
       body: JSON.stringify(order),
-    }).then(() => {
-      alert("your order has been sent. check status in navbar");
-      getOrderFeedback();
-    });
+    })
+      .then(() => {
+        alert("your order has been sent. check status in navbar");
+        getOrderFeedback();
+      })
+      .then(() => {
+        dispatch(cartCleared());
+      });
   };
 
   //handle Map component
